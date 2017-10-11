@@ -14,3 +14,10 @@ def load_api():
 	return api
 
 api = load_api()
+
+def getThreadContent(last_id):
+	statuses = []
+	statuses.append(api.GetStatus(last_id))
+	i = 0
+	while (statuses[i]['in_reply_to_status_id']):
+		statuses.append(api.GetStatus(statuses[i]['in_reply_to_status_id']))
